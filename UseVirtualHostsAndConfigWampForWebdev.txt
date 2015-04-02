@@ -1,0 +1,32 @@
+#extract from wamp httpd.conf
+
+<VirtualHost www.ticketland.dev:80> 
+	ServerName www.ticketland.dev
+	<Directory />
+		require all granted
+		DirectoryIndex /WD140AWP/WD140AWP.exe/CONNECT/Ticketland
+	</Directory>
+	
+	ScriptAlias /WD140AWP/ "C:/WebDev 14/Programmes/Moteur/Windows/AWP/"
+	
+	<Directory "C:/WebDev 14/Programmes/Moteur/Windows/AWP/">
+		Require all granted
+	</Directory>
+	
+	AddType application/WebDev14-awp .awp
+	Action application/WebDev14-awp /WD140AWP/WD140Awp.exe virtual
+	AddType application/WebDev14-awws .awws
+	Action application/WebDev14-awws /WD140AWP/WD140Awp.exe virtual
+	Alias /TICKETLAND_WEB/ "C:/Mes Sites/ticketland/TICKETLAND_WEB/"
+	
+	<Directory "C:/Mes Sites/ticketland/TICKETLAND_WEB/">
+		Require all granted
+		AddType text/cache-manifest .manifest
+	</Directory>
+	
+	<Files Ticketland>
+		Require all granted
+		Allow from all
+		ForceType application/WebDev14-awp 
+	</Files>
+</VirtualHost>
